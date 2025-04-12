@@ -91,6 +91,65 @@ server.tool(
   },
 );
 
+server.tool(
+  "get-monitor-health",
+  "Get the health of a monitor by ID",
+  {
+    id: z.number(),
+  },
+  async ({ id }) => {
+    const monitorHealth = await makeAPIRequest<any>(API_URL + `/monitors/${id}?include=health`, API_TOKEN);
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(monitorHealth, null, 2),
+        },
+      ],
+    };
+  },
+);
+
+server.tool(
+  "get-monitor-performance",
+  "Get the performance of a monitor by ID",
+  {
+    id: z.number(),
+  },
+  async ({ id }) => {
+    const monitorPerformance = await makeAPIRequest<any>(API_URL + `/monitors/${id}?include=performance`, API_TOKEN);
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(monitorPerformance, null, 2),
+        },
+      ],
+    };
+  },
+);
+
+server.tool(
+  "get-monitor-co2",
+  "Get the CO2 of a monitor by ID",
+  {
+    id: z.number(),
+  },
+  async ({ id }) => {
+    const monitorCO2 = await makeAPIRequest<any>(API_URL + `/monitors/${id}?include=co2`, API_TOKEN);
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(monitorCO2, null, 2),
+        },
+      ],
+    };
+  },
+);
+
+
+
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);

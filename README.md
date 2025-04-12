@@ -1,61 +1,56 @@
-# MCP Server
+# BotnBot MCP
 
-This is a Model Context Protocol (MCP) server implementation using TypeScript.
+A Model Context Protocol (MCP) server implementation for monitoring website performance and environmental impact.
 
 ## Features
 
-- TypeScript implementation for type safety
-- Hot reloading in development mode
-- Production-ready build system
-
-## Prerequisites
-
-- Node.js v16 or higher
-- Yarn package manager
+- Monitor website availability and performance
+- Track CO2 emissions and environmental impact
+- Get detailed metrics about website performance
+- Support for multiple monitoring periods (24h, 7d, 30d)
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd botnbot_mcp
-   ```
+```bash
+git clone https://github.com/yourusername/botnbot_mcp.git
+cd botnbot_mcp
+```
 
 2. Install dependencies:
-   ```bash
-   yarn install
-   ```
+```bash
+npm install
+```
 
-3. Build the project:
-   ```bash
-   yarn build
-   ```
+3. Create a `.env` file with your configuration:
+```env
+API_URL=your_api_url
+API_TOKEN=your_api_token
+```
 
-4. Start the server:
-   ```bash
-   yarn start
-   ```
+## Usage
 
-## Development
+Run the MCP server:
+```bash
+npm start
+```
 
-- `yarn dev` - Start the server in development mode with hot reload
-- `yarn build` - Build the TypeScript project
-- `yarn start` - Start the production server
-- `yarn test` - Run tests
-- `yarn lint` - Run linting
+You can also provide configuration via command line arguments:
+```bash
+npm start -- --url "your_api_url" --token "your_api_token"
+```
 
-## Contributing
+## API Endpoints
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- `GET /monitors` - List all monitors
+- `GET /monitor/:id/co2` - Get CO2 metrics for a specific monitor
+- `GET /monitor/:id/health` - Get health status for a specific monitor
+- `GET /monitor/:id/performance` - Get performance metrics for a specific monitor
 
 ## License
 
-[Add your license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## Contributing
 
-For support, please [add your support contact information here] 
+Contributions are welcome! Please feel free to submit a Pull Request. 
