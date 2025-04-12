@@ -2,19 +2,34 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import dotenv from 'dotenv';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
 // Load environment variables from .env file
 dotenv.config();
 
-const API_URL = process.env.API_URL;
-const API_TOKEN = process.env.API_TOKEN;
+// Parse command line arguments
+const argv = yargs(hideBin(process.argv))
+  .option('url', {
+    type: 'string',
+    description: 'API URL',
+  })
+  .option('token', {
+    type: 'string',
+    description: 'API Token',
+  })
+  .parseSync();
+
+// Get API URL and token from arguments or environment variables
+const API_URL = argv.url || process.env.API_URL;
+const API_TOKEN = argv.token || process.env.API_TOKEN;
 
 if (!API_URL) {
-  throw new Error('API_URL environment variable is not set');
+  throw new Error('API URL must be provided either as a command line argument (--url) or in the .env file (API_URL)');
 }
 
 if (!API_TOKEN) {
-  throw new Error('API_TOKEN environment variable is not set');
+  throw new Error('API Token must be provided either as a command line argument (--token) or in the .env file (API_TOKEN)');
 }
 
 // Create server instance
