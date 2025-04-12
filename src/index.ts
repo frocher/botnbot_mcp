@@ -63,11 +63,11 @@ async function makeAPIRequest<T>(url: string, token: string): Promise<T | null> 
 
 // Register monitors tool
 server.tool(
-  "monitors",
-  "Get monitors data from the API",
+  "get-monitors",
+  "Get a list of monitors",
   {},
   async () => {
-    const monitorsData = await makeAPIRequest<any>(API_URL, API_TOKEN);
+    const monitorsData = await makeAPIRequest<any>(API_URL + "/monitors", API_TOKEN);
 
     if (!monitorsData) {
       return {
