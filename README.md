@@ -11,6 +11,8 @@ A Model Context Protocol (MCP) server implementation for monitoring website perf
 
 ## Installation
 
+### Local Installation
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/botnbot_mcp.git
@@ -28,7 +30,25 @@ API_URL=your_api_url
 API_TOKEN=your_api_token
 ```
 
+### Docker Installation
+
+1. Build the Docker image:
+```bash
+docker build -t botnbot_mcp .
+```
+
+2. Run the container:
+```bash
+docker run -d \
+  --name botnbot_mcp \
+  -e API_URL=your_api_url \
+  -e API_TOKEN=your_api_token \
+  botnbot_mcp
+```
+
 ## Usage
+
+### Local Usage
 
 Run the MCP server:
 ```bash
@@ -38,6 +58,24 @@ npm start
 You can also provide configuration via command line arguments:
 ```bash
 npm start -- --url "your_api_url" --token "your_api_token"
+```
+
+### Docker Usage
+
+Run the container with environment variables:
+```bash
+docker run -d \
+  --name botnbot_mcp \
+  -e API_URL=your_api_url \
+  -e API_TOKEN=your_api_token \
+  botnbot_mcp
+```
+
+Or with command line arguments:
+```bash
+docker run -d \
+  --name botnbot_mcp \
+  botnbot_mcp npm start -- --url "your_api_url" --token "your_api_token"
 ```
 
 ## API Endpoints
